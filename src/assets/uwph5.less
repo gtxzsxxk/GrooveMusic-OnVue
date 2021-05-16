@@ -1,0 +1,318 @@
+
+@basecolor:#efefef;
+@themecolor:lightsteelblue;
+@titlebar-height: 30px;
+@titlebar-fontsize:13px;
+@bottom-color: lightsteelblue;
+@bottom-font-color: #fafafa;
+@bottom-height: 90px;
+@font-color:shade(@basecolor,70%);
+
+/*body{
+    width: 100%;
+    height: 100%;
+    border:solid;
+    border-width: 1px;
+    border-color: mediumpurple;
+}*/
+
+body{
+    width: 100%;
+    height: 100%;
+}
+
+@font-face {
+    font-family: "SourceHans";
+    src:url(./sourcehanslight.otf);
+}
+
+*{
+    font-weight: lighter;
+    font-family: "SourceHans";
+}
+
+.u-parent{
+    width: 100%;
+    height: calc(~"100vh - @{titlebar-height} - @{bottom-height}");
+}
+
+.u-titlebar{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    background-color: @basecolor;
+    color:@font-color;
+    height: @titlebar-height;
+    font-size: @titlebar-fontsize;
+    font-weight: lighter;
+    display: flex;
+    align-items:center;
+
+}
+
+.u-titlebar-placeholder{
+    display: block;
+    width: 100%;
+    height: @titlebar-height;
+}
+
+.u-title-left:first-child{
+    margin-left: 15px;
+}
+
+.u-title-right{
+    margin-left: auto;
+}
+
+.u-title-button{
+    height: @titlebar-height;
+    width: @titlebar-height;
+    display: inline-block;
+    line-height: @titlebar-height;
+    text-align: center;
+    border:none;
+}
+
+.u-title-button:hover{
+    height: @titlebar-height;
+    width: @titlebar-height;
+    display: inline-block;
+    line-height: @titlebar-height;
+    text-align: center;
+    background-color: lighten(@basecolor,3%);
+    cursor: pointer;
+    border:none;
+}
+
+.u-bottom{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color: @bottom-color;
+    color:lighten(@bottom-font-color,35%);
+    height: @bottom-height;
+    font-size: @titlebar-fontsize;
+    font-weight: lighter;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.u-bottom::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url('./avatar.jpg');
+    filter: blur(8px);
+    opacity: 0.25;
+    z-index:-1;
+    background-size: cover;
+}
+
+.u-bottom-item{
+    display: flex;
+    align-items: center;
+    canvas{
+        height:@bottom-height;
+        width: @bottom-height;
+    }
+    u-bottom-updown{
+        height:@bottom-height;
+    }
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.u-bottom-item-hover:hover{
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: darken(@bottom-color,5%);
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+/*Small screens*/
+@media screen and (max-width: 500px)
+{
+    .u-progress{
+        height: 3px;
+        width: 100%;
+        background-color: darken(@bottom-color,20%);
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    .u-major{
+        width: 100%;
+    }
+    .u-minor{
+        display: none;
+    }
+    u-container{
+        display: flex;
+        flex-direction: column!important;
+        justify-content: flex-start!important;
+        width: 100%;
+        height: 100%;
+    }
+    u-navigator-side{
+        display: flex;
+        flex-direction: column;
+        width: 100%!important;
+        height: fit-content;
+        background-color: @basecolor;
+    }
+}
+
+/* For PC screens */
+@media screen and (min-width: 500px)
+{
+    .u-major{
+        width: 35vw;
+    }
+    .u-minor-only{
+        display: none;
+    }
+    .u-progress{
+        height: 3px;
+        width: 90%;
+        background-color: darken(@bottom-color,20%);
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    u-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+    u-navigator-side{
+        display: flex;
+        flex-direction: column;
+        width: 30vw;
+        background-color: @basecolor;
+    }
+}
+
+u-bottom-updown{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+u-bottom-updown-element{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.u-progress-font{
+    color:lighten(@bottom-font-color,25%);
+}
+
+u-button-circle-lg{
+    height: 50px;
+    width: 50px;
+    border:none;
+    border-radius: 50px;
+    font-size: 30px;
+    line-height: 50px;
+    text-align: center;
+}
+
+u-button-circle-lg:hover{
+    height: 50px;
+    width: 50px;
+    border:none;
+    border-radius: 50px;
+    background-color: darken(@bottom-color,10%);
+    opacity: 0.75;
+    font-size: 30px;
+    line-height: 50px;
+    text-align: center;
+    color:lighten(@font-color,20%);
+    cursor: pointer;
+}
+
+u-button-circle-md{
+    height: 30px;
+    width: 30px;
+    border:none;
+    border-radius: 30px;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+}
+
+u-button-circle-md:hover{
+    height: 30px;
+    width: 30px;
+    border:none;
+    border-radius: 30px;
+    background-color: darken(@bottom-color,10%);
+    opacity: 0.75;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+    color:lighten(@font-color,20%);
+    cursor: pointer;
+}
+
+u-navigator-side-item{
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 1.0em;
+    height: @titlebar-height * 1.8;
+    line-height: @titlebar-height * 1.8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+}
+.u-navigator-side-item-chosen{
+    border-left:solid;
+    border-color: #ffffff - @bottom-color;
+    border-width: 6px;
+    padding-left: calc(15px-6px)!important;
+}
+
+u-navigator-side-item:hover{
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 1.0em;
+    height: @titlebar-height * 1.8;
+    line-height: @titlebar-height * 1.8;
+    background-color: darken(@basecolor,5%);
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+u-space{
+    width: 1vw;
+    display: inline-block;
+}
+
+#u-loading-overall{
+    width: 100vw;
+    height: 100vh;
+    background-color: @themecolor;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+    z-index: 90;
+}

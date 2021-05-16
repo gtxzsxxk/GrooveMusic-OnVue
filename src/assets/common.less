@@ -1,0 +1,56 @@
+@basecolor:#efefef;
+@themecolor:lightsteelblue;
+@titlebar-height: 30px;
+@titlebar-fontsize:13px;
+@bottom-color: lightsteelblue;
+@bottom-font-color: #fafafa;
+@bottom-height: 90px;
+@font-color:shade(@basecolor,70%);
+
+@font-face {
+    font-family: "SourceHans";
+    src:url(/static/sourcehanslight.otf);
+}
+
+*{
+    font-weight: lighter;
+    font-family: "SourceHans";
+}
+
+body{
+    margin:0;
+}
+
+.u-titlebar-placeholder{
+    display: block;
+    width: 100%;
+    height: @titlebar-height;
+}
+
+.u-content-container{
+    width: 100%;
+    height: calc(~"100vh - @{titlebar-height} - @{bottom-height}");
+}
+
+/*Small screens*/
+@media screen and (max-width: 500px)
+{
+    .u-minor{
+        display: none!important;
+    }
+}
+
+/* For PC screens */
+@media screen and (min-width: 500px)
+{
+    .u-minor-only{
+        display: none!important;
+    }
+}
+
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #ffffff; 
+    border-radius: 50%; /*外观设置为圆形*/
+}
